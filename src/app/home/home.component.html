@@ -1,0 +1,33 @@
+<!-- start of homepage div -->
+
+<div class="container">
+
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="location-wrap">
+  <div class="col-md-12">
+    <br><br><h3 class="text-center">Restaurant Finder</h3><br><br><br><br>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="currentLoca">
+        <div class="currentLoca">
+          <div (click)= "currentloc()" [routerLink]="['/geolocation/geocode']" routerLinkActive="active" type="button" class="buttons" style="padding-left: 10px; padding-right: 10px;">USE MY CURRENT LOCATION</div>
+        </div>
+    </div>
+    </div>
+
+      <div class="col-md-6">
+        <div class="col-md-12" align="center" style="padding: 10px;font-size: 25px;">Select City</div>
+        <div class="cities1">
+          <div class="cities">
+            <div class="button-wrap"><div (click)= "banglore()" [routerLink]="['/location/banglore']" routerLinkActive="active" type="button" class="buttons">BANGALORE</div> </div>
+            <div class="button-wrap"><div (click)= "mumbai()" [routerLink]="['/location/mumbai']" routerLinkActive="active" type="button" class="buttons">MUMBAI</div></div>
+            <div class="button-wrap"><div (click)= "hyderabad()" [routerLink]="['/location/hyderabad']" routerLinkActive="active" type="button" class="buttons">HYDERABAD</div></div>
+            <div class="button-wrap"><div (click)= "delhi()" [routerLink]="['/location/delhi']" routerLinkActive="active" type="button" class="buttons">DELHI</div></div>
+            <div class="button-wrap"><div (click)= "pune()" [routerLink]="['/location/pune']" routerLinkActive="active" type="button" class="buttons">PUNE</div></div>
+        </div>
+      </div>
+      </div>
+  </div>
+</div>

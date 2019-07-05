@@ -1,0 +1,93 @@
+<div *ngIf="undefined === restDetails">  
+  <div class="loading">
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+    <div class="loading-bar"></div>
+ </div>
+</div>
+
+<nav class="navbar navbar-inverse bg-primary">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <div class="nav-text-own">
+        <div><a class="nav-link" (click)= "returnhomepage()" style="cursor: pointer; font-weight: bold;">Restaurant Finder</a></div>
+        <div><a class="nav-link" (click)= "returnhomepage()" style="cursor: pointer;font-weight: lighter;">Home</a></div>
+      </div>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <div class="nav-search-own">
+        <div> <input type="text" (keyup.enter) = "searchnow()" [(ngModel)]="searcharea"> </div>
+        <div> <button (click)= "searchnow()" style="cursor: pointer;font-weight: lighter;">SEARCH</button> </div>
+      </div>
+    </ul>
+  </div>
+</nav>
+
+    <div *ngIf="undefined !== restDetails" class="container">
+      <div class="details-wrap">
+        <div class="card2 mb-3">
+          <img class="card-img-top2" src="{{restDetails.featured_image}}:di-default-image.jpg/original-image.jpg">
+          <div class="card-body">
+            <h5 class="card-title">{{restDetails.name}}</h5>
+            <p class="card-text"><b class="fas fa-star">&#9733; </b>{{restDetails.user_rating.aggregate_rating}} | {{restDetails.user_rating.votes}} reviews </p>
+            <hr>
+            <p class="card-text">{{restDetails.cuisines}}</p>
+            <p class="card-text">Cost for 2: {{restDetails.average_cost_for_two}}</p>
+            <p class="card-text">Address: {{restDetails.location.address}}</p>
+            <p class="card-text">
+              Menu Link: <a target="_blank" href="{{restDetails.menu_url}}">link</a>
+              | Photos Link: <a target="_blank" href="{{restDetails.photos_url}}">link</a>
+            </p>
+            <hr>
+
+          <div *ngIf="undefined !== restReviewsDetails">
+            <h5>Reviews({{restReviewsDetails.reviews_shown}})</h5>
+            <div class="review-wrap">
+              <div *ngFor="let review of restReviewsDetails['user_reviews'] ">
+                <div class="row">
+                  <div class="col-md-1">
+                    <div class="img-wrap">
+                      <img style="border-radius: 50%; display: block; width: 50px; height: 50px;" src="{{review.review.user.profile_image}}:di-default-image.jpg/original-image.jpg">
+                    </div>
+                  </div>
+                  <div class="col-md-11">
+                    <div class="review_content" style="padding-bottom: 20px;">
+                      <h6>{{review.review.user.name}} |
+                        <b class="far fa-star">&#9733;</b>
+                        {{review.review.user.foodie_level_num}}
+                      </h6>
+                      <p class="card-text">{{review.review.rating_text}}</p>
+                
+                      <p *ngIf="review.review.review_text.length>200 && readMoreStatus" class="card-text">
+                       {{review.review.review_text | slice:0:200}}...<span class="readMore-text" (click)="readMore(review.review.review_text,review.review.id)">Read more</span>
+                      </p>
+
+                      <p *ngIf="review.review.review_text.length<=200" class="card-text">
+                       {{review.review.review_text}}
+                      </p>
+
+                       <p *ngIf="review.review.review_text.length>200 && !readMoreStatus" class="card-text">
+                       {{review.review.review_text}}
+                      </p>
+
+
+                      <!-- <div class="containerxyz" ng-class="{show: show}">
+                          {{review.review.review_text}}
+                
+                      </div>
+                      <button ng-click="show = true">Show text</button> -->
+   
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+    </div>
